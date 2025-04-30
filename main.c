@@ -30,6 +30,19 @@ cu=48+u;
 N4[0]=cm;N4[1]=cc;N4[2]=cd;N4[3]=cu;N4[4]='\0';
 }
 
+void lireCommande(FILE * fc,char * suffixe)
+{
+	char nomclient[50];
+	int ref,qtt;
+	fscanf(fc,"%s",nomclient); //on lit la commande dans le fichier commandeXXXX.txt
+	
+	do
+	{
+		fscanf(fc,"%d %d",&ref, &qtt); //on lit la commande dans le fichier commandeXXXX.txt
+	} while (!feof(fc)); //on lit jusqu'à la fin du fichier commandeXXXX.txt
+	
+}
+
 
 void lireLesCommandes() //cette fonction ouvre tous les fichiers commandeXXX.txt avec XXXX démarrant à N
 {
@@ -38,6 +51,7 @@ int FINI=0;
 int N = lireProchaineCommande(); //numero de la premiere commande qui sera lue et traitee
 char NNNN[5];
 char nomCommande[29];
+
 
 do //ce do while prend fin dès que fichier commandeXXXX.txt est absent 
 	{
@@ -54,7 +68,7 @@ do //ce do while prend fin dès que fichier commandeXXXX.txt est absent
 	if (ficCommande!=NULL)
 		{ // le fichier commandeNNNN.txt existe
 			printf("\n fichier %s present",nomCommande);
-			//lireCommande(nomCommande); // à vous de coder cette fonction lors de ce TP9
+			lireCommande(ficCommande,NNNN); // à vous de coder cette fonction lors de ce TP9
 			fclose(ficCommande);
 		}
 	else
